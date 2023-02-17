@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events'
+import { RestaurantEventType } from './types/tableEvents'
 
 export class Restaurant extends EventEmitter {
   /**
@@ -6,7 +7,7 @@ export class Restaurant extends EventEmitter {
    */
   open() {
     // Emit...
-    this.emit('open', 'Opening a restaurant')
+    this.emit(RestaurantEventType.Open, 'Opening a restaurant')
   }
 
   /**
@@ -14,7 +15,7 @@ export class Restaurant extends EventEmitter {
    */
   close() {
     // Emit...
-    this.emit('close', 'Closing a restaurant')
+    this.emit(RestaurantEventType.Close, 'Closing a restaurant')
   }
 
   /**
@@ -23,7 +24,7 @@ export class Restaurant extends EventEmitter {
    */
   reserveTable() {
     // Emit...
-    this.emit('tableCountChange', -1)
+    this.emit(RestaurantEventType.TableCountChange, -1)
   }
 
   /**
@@ -32,7 +33,7 @@ export class Restaurant extends EventEmitter {
    */
   cancelTableReservation() {
     // Emit...
-    this.emit('tableCountChange', +1)
+    this.emit(RestaurantEventType.TableCountChange, +1)
   }
 
   /**
@@ -40,7 +41,7 @@ export class Restaurant extends EventEmitter {
    */
   takeTableWithoutReservation() {
     // Emit...
-    this.emit('tableCountChange', -1)
+    this.emit(RestaurantEventType.TableCountChange, -1)
   }
 
   /**
@@ -48,7 +49,7 @@ export class Restaurant extends EventEmitter {
    */
   markTableAsBroken() {
     // Emit...
-    this.emit('tableCountChange', -1)
+    this.emit(RestaurantEventType.TableCountChange, -1)
   }
 
   /**
@@ -56,6 +57,6 @@ export class Restaurant extends EventEmitter {
    */
   cleanupTable() {
     // Emit...
-    this.emit('tableCountChange', +1)
+    this.emit(RestaurantEventType.TableCountChange, +1)
   }
 }

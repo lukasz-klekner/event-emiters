@@ -1,4 +1,4 @@
-import { Restaurant } from './restaurant.js'
+import { Restaurant } from './restaurant'
 
 const megaRestaurant = new Restaurant()
 let tablesCount = 25
