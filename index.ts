@@ -1,13 +1,14 @@
 import { Restaurant } from './restaurant'
+import { RestaurantEventType } from './types/tableEvents'
 
 const megaRestaurant = new Restaurant()
 let tablesCount = 25
 
 // Tutaj dodaj nasłuchiwanie
 megaRestaurant
-  .on('open', (data) => console.log(data))
-  .on('close', (data) => console.log(data))
-  .on('tableCountChange', (data) => {
+  .on(RestaurantEventType.Open, (data) => console.log(data))
+  .on(RestaurantEventType.Close, (data) => console.log(data))
+  .on(RestaurantEventType.TableCountChange, (data) => {
     tablesCount += data
   })
 

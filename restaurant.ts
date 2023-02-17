@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events'
-import { RestaurantEventType } from './types/tableEvents'
+import { RestaurantEvent, RestaurantEventChange, RestaurantEventType } from './types/tableEvents'
 
 export class Restaurant extends EventEmitter {
   /**
@@ -7,7 +7,7 @@ export class Restaurant extends EventEmitter {
    */
   open() {
     // Emit...
-    this.emit(RestaurantEventType.Open, 'Opening a restaurant')
+    (this.emit as RestaurantEvent)(RestaurantEventType.Open, 'Opening a restaurant')
   }
 
   /**
@@ -15,7 +15,7 @@ export class Restaurant extends EventEmitter {
    */
   close() {
     // Emit...
-    this.emit(RestaurantEventType.Close, 'Closing a restaurant')
+    (this.emit as RestaurantEvent)(RestaurantEventType.Close, 'Closing a restaurant')
   }
 
   /**
@@ -24,7 +24,7 @@ export class Restaurant extends EventEmitter {
    */
   reserveTable() {
     // Emit...
-    this.emit(RestaurantEventType.TableCountChange, -1)
+    (this.emit as RestaurantEventChange)(RestaurantEventType.TableCountChange, -1)
   }
 
   /**
@@ -33,7 +33,7 @@ export class Restaurant extends EventEmitter {
    */
   cancelTableReservation() {
     // Emit...
-    this.emit(RestaurantEventType.TableCountChange, +1)
+    (this.emit as RestaurantEventChange)(RestaurantEventType.TableCountChange, +1)
   }
 
   /**
@@ -41,7 +41,7 @@ export class Restaurant extends EventEmitter {
    */
   takeTableWithoutReservation() {
     // Emit...
-    this.emit(RestaurantEventType.TableCountChange, -1)
+    (this.emit as RestaurantEventChange)(RestaurantEventType.TableCountChange, -1)
   }
 
   /**
@@ -49,7 +49,7 @@ export class Restaurant extends EventEmitter {
    */
   markTableAsBroken() {
     // Emit...
-    this.emit(RestaurantEventType.TableCountChange, -1)
+    (this.emit as RestaurantEventChange)(RestaurantEventType.TableCountChange, -1)
   }
 
   /**
@@ -57,6 +57,6 @@ export class Restaurant extends EventEmitter {
    */
   cleanupTable() {
     // Emit...
-    this.emit(RestaurantEventType.TableCountChange, +1)
+    (this.emit as RestaurantEventChange)(RestaurantEventType.TableCountChange, +1)
   }
 }
