@@ -18,13 +18,17 @@ export class Restaurant extends EventEmitter {
     (this.emit as RestaurantEvent)(RestaurantEventType.Close, 'Closing a restaurant')
   }
 
+  private changeTableCount(inc: number){
+    (this.emit as RestaurantEventChange)(RestaurantEventType.TableCountChange, inc)
+  }
+
   /**
    * Stolik został zarezerowany na teraz.
    * Traktuj to jako po prostu 1 stolik mniej.
    */
   reserveTable() {
     // Emit...
-    (this.emit as RestaurantEventChange)(RestaurantEventType.TableCountChange, -1)
+    this.changeTableCount(-1)
   }
 
   /**
@@ -33,7 +37,7 @@ export class Restaurant extends EventEmitter {
    */
   cancelTableReservation() {
     // Emit...
-    (this.emit as RestaurantEventChange)(RestaurantEventType.TableCountChange, +1)
+    this.changeTableCount(1)
   }
 
   /**
@@ -41,7 +45,7 @@ export class Restaurant extends EventEmitter {
    */
   takeTableWithoutReservation() {
     // Emit...
-    (this.emit as RestaurantEventChange)(RestaurantEventType.TableCountChange, -1)
+    this.changeTableCount(-1)
   }
 
   /**
@@ -49,7 +53,7 @@ export class Restaurant extends EventEmitter {
    */
   markTableAsBroken() {
     // Emit...
-    (this.emit as RestaurantEventChange)(RestaurantEventType.TableCountChange, -1)
+    this.changeTableCount(-1)
   }
 
   /**
@@ -57,6 +61,6 @@ export class Restaurant extends EventEmitter {
    */
   cleanupTable() {
     // Emit...
-    (this.emit as RestaurantEventChange)(RestaurantEventType.TableCountChange, +1)
+    this.changeTableCount(1)
   }
 }
