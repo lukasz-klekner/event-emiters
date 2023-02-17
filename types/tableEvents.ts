@@ -4,5 +4,6 @@ export enum RestaurantEventType {
     Close = 'close',
 }
 
-export type RestaurantEvent = (eventName: RestaurantEventType.Open | RestaurantEventType.Close, desc: string ) => boolean
-export type RestaurantEventChange = (eventName: RestaurantEventType.TableCountChange, incr: number ) => boolean
+export type RestaurantEvent = (eventName: RestaurantEventType.Open | RestaurantEventType.Close, desc: string) => boolean
+export type RestaurantEventChange = (eventName: RestaurantEventType.TableCountChange, incr: number) => boolean
+export type RestaurantEventChangeCallback = (inc: number) => void
